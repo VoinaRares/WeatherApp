@@ -1,0 +1,34 @@
+<div class="city-manager">
+  <app-city-search-bar
+    (citySelected)="setCurrentCity($event)"
+  ></app-city-search-bar>
+
+  <div class="carousel-wrapper" [ngClass]="{'two-items': cities.length === 2}">
+    <p-carousel
+      #carousel
+      [value]="cities"
+      [numVisible]="visibleItems"
+      [numScroll]="1"
+      [circular]="false"
+      [showIndicators]="true"
+      [showNavigators]="true"
+      [responsiveOptions]="
+        [
+          { breakpoint: '1279px', numVisible: 3, numScroll: 1 },
+          { breakpoint: '1023px', numVisible: 2, numScroll: 1 },
+          { breakpoint: '767px', numVisible: 1, numScroll: 1 }
+        ]
+      "
+      styleClass="custom-p-carousel"
+    >
+      <ng-template pTemplate="item" let-city>
+        <app-city-card
+          [city]="city"
+          (remove)="removeCity(city.id)"
+          (favorite)="favoriteCity(city.id)"
+          (select)="setCurrentCity(city)"
+        ></app-city-card>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

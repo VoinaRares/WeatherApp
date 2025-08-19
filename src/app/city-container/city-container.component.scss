@@ -1,0 +1,186 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background-color: #f3f3f3;
+  width: 37%;
+  height: 12%;
+  margin-top: 1%;
+  margin-left: 31.5%;
+  margin-bottom: 1%;
+}
+
+.add-city-form input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+.add-city-form input::placeholder {
+  color: #bbb;
+}
+
+.add-city-form span {
+  color: orange;
+}
+
+.add-city-form span:hover {
+  color: rgb(206, 134, 1);
+  transform: translateY(-2px);
+}
+
+.city-manager {
+  //padding: 2rem;
+  height: 93%;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  padding: 0 0 0 0;
+
+  &.two-items .p-carousel-items-content {
+    gap: 1rem !important;
+  }
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 15px;
+  gap: 2rem;
+}
+.carousel-item {
+  flex: 0 0 calc(100% / var(--visible-items, 4) - 30px);
+  margin: 0 15px;
+  box-sizing: border-box;
+  transform: translateZ(0);
+}
+
+.carousel-controls {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 2;
+
+  button {
+    position: relative;
+    pointer-events: all;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2.2rem;
+    color: #ff9800;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin: 0 -40px;
+    outline: none;
+    border: 2px solid transparent;
+
+    &:first-child {
+      margin-left: 5px;
+    }
+
+    &:last-child {
+      margin-right: 5px;
+    }
+
+    &:hover:not(:disabled) {
+      background: #fff3e0;
+      color: #e65100;
+      transform: scale(1.13);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      border: 2px solid #ff9800;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      transform: scale(1);
+      cursor: not-allowed;
+      color: #bdbdbd;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid #eee;
+    }
+  }
+}
+
+:host {
+  --visible-items: 4;
+}
+
+@media (max-width: 1279px) {
+  :host {
+    --visible-items: 3;
+  }
+}
+@media (max-width: 1023px) {
+  :host {
+    --visible-items: 2;
+  }
+}
+@media (max-width: 767px) {
+  :host {
+    --visible-items: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    padding: 0 40px;
+
+    .carousel-container {
+      width: calc(100% - 80px);
+    }
+  }
+
+  .carousel-controls button {
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+    margin: 0 -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-wrapper {
+    padding: 0 20px;
+
+    .carousel-container {
+      width: calc(100% - 40px);
+    }
+  }
+
+  .carousel-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 1.1rem;
+    margin: 0 -20px;
+  }
+}

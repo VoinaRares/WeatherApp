@@ -1,0 +1,75 @@
+<div class="all">
+  <div class="title-row">
+    <div class="title">
+      <p style="color: #636363; font-size: 1.1em; font-weight: bold; margin: 0;">
+        Today's highlight in {{ city }}
+      </p>
+    </div>
+    <div class="unit-toggle-switch">
+      <button pButton type="button" (click)="setCelsius(true)" [ngClass]="{'active': isCelsius}" class="unit-btn p-button-rounded p-button-outlined">°C</button>
+      <button pButton type="button" (click)="setCelsius(false)" [ngClass]="{'active': !isCelsius}" class="unit-btn p-button-rounded p-button-outlined">°F</button>
+    </div>
+  </div>
+  <div class="city-info">
+    <div class="left">
+      <div class="left-left-column">
+        <div class="temperature">
+          <app-apparent-temperature
+            [temperature]="isCelsius ? weatherData.apparentTemperature : (weatherData.apparentTemperature * 9/5) + 32"
+            [isCelsius]="isCelsius"
+          ></app-apparent-temperature>
+        </div>
+
+        <div class="precipitation-probability">
+          <app-precipitation-probability
+            [maxProbabiliy]="weatherData.maxPrecipitationProbabilityToday.prob"
+            [maxHour]="weatherData.maxPrecipitationProbabilityToday.hour"
+            [probabilityNow]="weatherData.precipitationNow"
+          ></app-precipitation-probability>
+        </div>
+      </div>
+      <div class="left-right-column">
+        <div class="precipitation">
+          <app-precipitations
+            [precipitations]="weatherData.precipitation"
+          ></app-precipitations>
+        </div>
+        <div class="other">
+          <div class="left">
+            <div class="visibility">
+              <app-visibility
+                [visibility]="weatherData.visibilityNow"
+              ></app-visibility>
+            </div>
+            <div class="uv">
+              <app-uv [uv]="weatherData.UVIndex"></app-uv>
+            </div>
+          </div>
+          <div class="right">
+            <app-temperature
+              [maxT]="isCelsius ? weatherData.maxTemperatureToday : (weatherData.maxTemperatureToday * 9/5) + 32"
+              [minT]="isCelsius ? weatherData.minTemperatureToday : (weatherData.minTemperatureToday * 9/5) + 32"
+              [isCelsius]="isCelsius"
+            ></app-temperature>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-area">
+      <ngx-charts-line-chart
+        [view]="view"
+        [results]="chartData"
+        [xAxis]="true"
+        [yAxis]="true"
+        [autoScale]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Hour'"
+        [yAxisLabel]="yAxisLabel()"
+        [curve]="curve"
+      >
+      </ngx-charts-line-chart>
+    </div>
+  </div>
+</div>

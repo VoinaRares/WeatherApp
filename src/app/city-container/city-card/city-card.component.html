@@ -1,0 +1,11 @@
+<div class="city-card" (click)="onCardClick($event)">
+  <div class="card-background" [style.backgroundImage]="city.imageUrl ? 'url(' + city.imageUrl + ')' : ''"></div>
+  <div class="card-content">
+    <div class="card-header">
+      <h2 class="city-name">{{ city.name }}</h2>
+      <span class="favorite-btn material-icons" (click)="onToggleFavorite($event)">
+        {{ city.favorite ? 'star' : 'star_border' }}
+      </span>
+    </div>
+  </div>
+</div>
